@@ -1,261 +1,62 @@
 {
   "schemaVersion": 1,
-  "status": "ready",
-  "verification": "mock-only",
-  "releaseEligible": true,
-  "maintainer": "jannikco",
-  "license": "MIT",
-  "sourceRevision": "f98aee2e37d4f987f7327d7a2217b536c11222323a4fcb8c8d31e9bf1c393ad0",
-  "evidence": [
-    "Actual tools/call and direct-provider request contract tests"
-  ],
-  "provenance": [
-    "https://developer.atlassian.com/cloud/trello/rest/api-group-members/"
-  ],
   "id": "trello-mcp",
   "kind": "provider-connector",
   "product": "pipmcp",
   "title": "Trello MCP server",
-  "description": "Identify the current member and read open boards for a portfolio status summary.",
-  "operationIds": [
-    "get_current_member",
-    "list_member_boards"
+  "description": "Use Trello with AI agents through one PipMCP API key, actual hosted schemas and governed execution.",
+  "status": "ready",
+  "verification": "mock-only",
+  "releaseEligible": true,
+  "operationIds": [],
+  "maintainer": "jannikco",
+  "license": "MIT",
+  "attributionSlug": "github-trello-mcp",
+  "sourceRevision": "b340c166da7fe636780bab7763b0eb458c95e1d0abc969199cbd9525d76925d9",
+  "qualityVersion": 2,
+  "artifactType": "connector",
+  "evidence": [
+    "Gateway HTTP transport fixtures",
+    "Generated stdio wrapper discovery/call fixtures"
   ],
+  "provenance": [
+    "https://developer.atlassian.com/cloud/trello/rest/api-group-members/"
+  ],
+  "utility": {
+    "problem": "Identify the current member and read open boards for a portfolio status summary.",
+    "output": "Actual hosted tool schemas and durable governed execution receipts"
+  },
   "appSlug": "trello",
   "appName": "Trello",
-  "providerDocs": "https://developer.atlassian.com/cloud/trello/swagger.v3.json",
-  "providerWebsite": "https://trello.com/",
-  "authentication": {
-    "type": "custom_headers",
-    "requiredCredentialFields": [
-      "provider_header_credentials"
-    ],
-    "settings": {},
-    "requiredHeaderNames": [],
-    "helpUrl": "https://developer.atlassian.com/cloud/trello/guides/rest-api/authorization/",
-    "tenantRequired": false,
-    "accountParameterNames": []
-  },
-  "attributionSlug": "github-trello-mcp",
-  "artifactType": "connector",
-  "qualityVersion": 2,
   "connectorId": "trello",
-  "connector": {
-    "id": "trello",
-    "name": "Trello",
-    "version": "0.2.0",
-    "baseUrl": "https://api.trello.com/1",
-    "auth": {
-      "type": "query",
-      "env": "TRELLO_TOKEN",
-      "queryParam": "token",
-      "extraQuery": {
-        "key": {
-          "env": "TRELLO_API_KEY"
-        }
-      }
-    },
-    "tools": [
-      {
-        "name": "get_current_member",
-        "description": "Read the member associated with your Trello token.",
-        "method": "GET",
-        "path": "/members/me",
-        "readOnly": true,
-        "inputSchema": {
-          "type": "object",
-          "properties": {},
-          "required": [],
-          "additionalProperties": false
-        },
-        "bindings": {
-          "path": [],
-          "query": {},
-          "body": {}
-        },
-        "sampleArguments": {},
-        "provenance": [
-          "https://developer.atlassian.com/cloud/trello/rest/api-group-members/"
-        ]
-      },
-      {
-        "name": "list_member_boards",
-        "description": "Read boards visible to the current member.",
-        "method": "GET",
-        "path": "/members/me/boards",
-        "readOnly": true,
-        "inputSchema": {
-          "type": "object",
-          "properties": {
-            "filter": {
-              "type": "string",
-              "enum": [
-                "all",
-                "open",
-                "closed",
-                "members",
-                "organization",
-                "public",
-                "starred"
-              ]
-            },
-            "fields": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 512,
-              "description": "Identifier"
-            }
-          },
-          "required": [],
-          "additionalProperties": false
-        },
-        "bindings": {
-          "path": [],
-          "query": {
-            "filter": "filter",
-            "fields": "fields"
-          },
-          "body": {}
-        },
-        "sampleArguments": {
-          "filter": "open",
-          "fields": "id,name,url"
-        },
-        "provenance": [
-          "https://developer.atlassian.com/cloud/trello/rest/api-group-members/"
-        ]
-      }
-    ],
-    "workflow": {
-      "name": "Board portfolio briefing",
-      "description": "Identify the current member and read open boards for a portfolio status summary.",
-      "steps": [
-        "get_current_member",
-        "list_member_boards"
-      ]
-    },
-    "provenance": [
-      "https://developer.atlassian.com/cloud/trello/rest/api-group-members/"
-    ],
-    "verification": "mock-only",
-    "providerLiveValidation": "not-run",
-    "capabilityEvidence": {
-      "local": {
-        "level": "Tested",
-        "operations": [
-          {
-            "name": "get_current_member",
-            "level": "Tested",
-            "evidenceRefs": [
-              "Provider request/stdio contract tests"
-            ],
-            "method": "contract-fixture"
-          },
-          {
-            "name": "list_member_boards",
-            "level": "Tested",
-            "evidenceRefs": [
-              "Provider request/stdio contract tests"
-            ],
-            "method": "contract-fixture"
-          }
-        ],
-        "evidenceRefs": [
-          "Provider request/stdio contract tests"
-        ],
-        "mode": "local"
-      },
-      "managed": {
-        "level": "Documented",
-        "operations": [
-          {
-            "name": "get_current_member",
-            "level": "Documented",
-            "evidenceRefs": [],
-            "method": "documentation"
-          },
-          {
-            "name": "list_member_boards",
-            "level": "Documented",
-            "evidenceRefs": [],
-            "method": "documentation"
-          }
-        ],
-        "evidenceRefs": [],
-        "mode": "managed"
-      }
-    },
-    "repoId": "trello-mcp",
-    "appSlug": "trello",
-    "product": "pipmcp",
-    "artifactType": "connector",
-    "sourceRevision": "f98aee2e37d4f987f7327d7a2217b536c11222323a4fcb8c8d31e9bf1c393ad0",
-    "authentication": {
-      "type": "custom_headers",
-      "requiredCredentialFields": [
-        "provider_header_credentials"
-      ],
-      "settings": {},
-      "requiredHeaderNames": [],
-      "helpUrl": "https://developer.atlassian.com/cloud/trello/guides/rest-api/authorization/",
-      "tenantRequired": false,
-      "accountParameterNames": []
-    },
-    "managedAvailability": {
-      "status": "listed",
-      "checkedAt": "2026-11-08T12:29:10.433747+00:00"
-    }
-  },
+  "executionAuthority": "pipmcp-gateway",
+  "version": "1.0.0",
+  "agentReady": true,
   "capabilityEvidence": {
     "local": {
       "level": "Tested",
       "operations": [
         {
-          "name": "get_current_member",
+          "name": "gateway_transport",
           "level": "Tested",
+          "method": "contract-fixture",
           "evidenceRefs": [
-            "Provider request/stdio contract tests"
-          ],
-          "method": "contract-fixture"
-        },
-        {
-          "name": "list_member_boards",
-          "level": "Tested",
-          "evidenceRefs": [
-            "Provider request/stdio contract tests"
-          ],
-          "method": "contract-fixture"
+            "Generated gateway/stdio fixtures"
+          ]
         }
       ],
       "evidenceRefs": [
-        "Provider request/stdio contract tests"
+        "Generated gateway/stdio fixtures"
       ],
       "mode": "local"
     },
     "managed": {
       "level": "Documented",
-      "operations": [
-        {
-          "name": "get_current_member",
-          "level": "Documented",
-          "evidenceRefs": [],
-          "method": "documentation"
-        },
-        {
-          "name": "list_member_boards",
-          "level": "Documented",
-          "evidenceRefs": [],
-          "method": "documentation"
-        }
-      ],
+      "operations": [],
       "evidenceRefs": [],
       "mode": "managed"
     }
   },
-  "utility": {
-    "problem": "Identify the current member and read open boards for a portfolio status summary.",
-    "output": "Actual provider API results through local MCP tools"
-  },
   "factory": "leadadapter-pipmcp",
-  "generatorVersion": 2
+  "generatorVersion": 3
 }

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "version": "1.0.0",
+  "product": "pipmcp",
+  "credential": "PIPMCP_API_KEY",
+  "skills": [
+    {
+      "name": "pipmcp-trello",
+      "description": "Connect AI agents to Trello using one PipMCP API key and actual hosted tool discovery."
+    }
+  ],
+  "files": {
+    "skills/pipmcp-trello/SKILL.md": "703e4d11374f2c1aa7a52f589bceb6b8bd471e34350e7dfcc96a82fe329bd2f0"
+  }
+}
