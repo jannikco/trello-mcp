@@ -1,0 +1,90 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Trello selected operations",
+    "version": "0.2.0",
+    "description": "Reviewed local connector bindings for manual API import. No provider credentials are included; authentication and hosted execution require separate configuration and tests."
+  },
+  "servers": [
+    {
+      "url": "https://api.trello.com/1"
+    }
+  ],
+  "paths": {
+    "/members/me": {
+      "get": {
+        "operationId": "get_current_member",
+        "summary": "Read the member associated with your Trello token.",
+        "parameters": [],
+        "x-pipmcp-read-only": true,
+        "responses": {
+          "200": {
+            "description": "Provider response; inspect provider documentation for result fields."
+          }
+        }
+      }
+    },
+    "/members/me/boards": {
+      "get": {
+        "operationId": "list_member_boards",
+        "summary": "Read boards visible to the current member.",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all",
+                "open",
+                "closed",
+                "members",
+                "organization",
+                "public",
+                "starred"
+              ]
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512,
+              "description": "Identifier"
+            }
+          }
+        ],
+        "x-pipmcp-read-only": true,
+        "responses": {
+          "200": {
+            "description": "Provider response; inspect provider documentation for result fields."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "providerAuth": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "token"
+      },
+      "query_key": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "key"
+      }
+    }
+  },
+  "security": [
+    {
+      "providerAuth": [],
+      "query_key": []
+    }
+  ]
+}

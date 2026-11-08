@@ -1,15 +1,21 @@
 {
   "name": "trello-mcp",
-  "version": "0.1.0",
-  "description": "Generate Trello MCP client configuration, inspect available tools and validate hosted endpoint access through PipMCP.",
+  "version": "0.2.0",
+  "description": "Identify the current member and read open boards for a portfolio status summary.",
   "type": "module",
-  "private": false,
   "license": "MIT",
   "engines": {
     "node": ">=22"
   },
+  "bin": {
+    "trello-mcp": "server.mjs"
+  },
   "scripts": {
-    "test": "node --test",
-    "start": "node example.mjs"
+    "start": "node example.mjs",
+    "server": "node server.mjs",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.4.0"
   }
 }
