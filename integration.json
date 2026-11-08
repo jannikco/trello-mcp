@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "status": "ready",
+  "verification": "mock-only",
+  "releaseEligible": true,
+  "maintainer": "jannikco",
+  "license": "MIT",
+  "sourceRevision": "6704f32302161f7c4a44667458dd24889c40fc64084238e87e09635c94fa2c1e",
+  "evidence": [
+    "Source-backed provider setup metadata",
+    "Offline configuration and MCP protocol tests"
+  ],
+  "provenance": [
+    "https://developer.atlassian.com/cloud/trello/swagger.v3.json"
+  ],
+  "id": "trello-mcp",
+  "kind": "mcp-setup",
+  "product": "pipmcp",
+  "title": "Trello MCP setup and connection checker",
+  "description": "Generate Trello MCP client configuration, inspect available tools and validate hosted endpoint access through PipMCP.",
+  "operationIds": [],
+  "appSlug": "trello",
+  "appName": "Trello",
+  "providerDocs": "https://developer.atlassian.com/cloud/trello/swagger.v3.json",
+  "providerWebsite": "https://trello.com/",
+  "authentication": {
+    "type": "custom_headers",
+    "requiredCredentialFields": [
+      "provider_header_credentials"
+    ],
+    "requiredHeaderNames": [],
+    "helpUrl": "https://developer.atlassian.com/cloud/trello/guides/rest-api/authorization/",
+    "tenantRequired": false,
+    "accountParameterNames": []
+  },
+  "attributionSlug": "github-trello-mcp"
+}
